@@ -6,7 +6,7 @@ module "ecs-hmaw-bpoap01" {
   INSTANCE_TYPE  = "t3a.small"
   SSH_KEY_NAME   = "hmaw-bpoap01"
   VPC_SUBNETS    = "subnet-0751b3e3cc871be8a,subnet-068b41b0ef91dc341"
-  ENABLE_SSH     = true
+  ENABLE_SSH     = false
   SSH_SG         = "sg-ecs-hmaw-bpoap01"
   LOG_GROUP      = "log-hmaw-bpoap01"
   AWS_ACCOUNT_ID = "667460020190"
