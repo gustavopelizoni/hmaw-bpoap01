@@ -2,7 +2,7 @@
 repository of useful terraform modules Almee
 
 # Usage
-## ECS Cluster
+### ECS Cluster
 ```
 module "my-ecs" {
   source         = "github.com/gustavopelizoni/hmaw-bpoap01//modules/ecs-cluster"
@@ -19,7 +19,7 @@ module "my-ecs" {
 }
 ```
 
-## ECS Service
+### ECS Service
 ```
 module "my-service" {
   source              = "github.com/gustavopelizoni/hmaw-bpoap01//modules/ecs-service"
