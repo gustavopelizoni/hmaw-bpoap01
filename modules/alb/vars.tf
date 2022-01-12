@@ -17,6 +17,5 @@ variable "DEFAULT_TARGET_ARN" {
 }
 
 variable "ECS_SG" {
-  default = "sgecsdvawsysap01"
 }
 
