@@ -43,6 +43,6 @@ variable "ENABLE_SSH" {
 }
 
 variable "SSH_SG" {
-  default = "sg-ecs-hmaw-bpoap01"
+  default = ""
 }
 

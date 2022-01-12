@@ -7,7 +7,7 @@ module "ecs-hmaw-bpoap01" {
   SSH_KEY_NAME   = "hmaw-bpoap01"
   VPC_SUBNETS    = "subnet-0751b3e3cc871be8a,subnet-068b41b0ef91dc341"
   ENABLE_SSH     = true
-  SSH_SG         = "sg-ecs-hmaw-bpoap01"
+  SSH_SG         = "${sg-ecs-hmaw-bpoap01}"
   LOG_GROUP      = "log-hmaw-bpoap01"
   AWS_ACCOUNT_ID = "667460020190"
   AWS_REGION     = "us-east-1"
