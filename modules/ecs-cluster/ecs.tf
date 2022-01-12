@@ -15,7 +15,7 @@ data "aws_ami" "ecs" {
     values = ["hvm"]
   }
 
-  owners = ["amazon"]
+  owners = ["667460020190"]
 }
 
 #  owners = ["667460020190"] # AWS
