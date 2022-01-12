@@ -6,13 +6,14 @@ resource "aws_security_group" "cluster" {
 
 
 
-resource "aws_security_group_rule" "cluster-allow-ssh" {
-  #count                    = var.ENABLE_SSH ? 1 : 0
+resource "aws_security_group_rule" "cluster-ingress" {
+  count                    = var.ENABLE_SSH ? 1 : 0
   security_group_id        = aws_security_group.cluster.id
   type                     = "ingress"
   from_port                = 22
   to_port                  = 22
   protocol                 = "tcp"
+  cidr_blocks              = var.VPC_ID
   source_security_group_id = var.SSH_SG
 }
 
