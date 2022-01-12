@@ -4,6 +4,8 @@ resource "aws_security_group" "cluster" {
   description = var.CLUSTER_NAME
 }
 
+
+
 resource "aws_security_group_rule" "cluster-allow-ssh" {
   count                    = var.ENABLE_SSH ? 1 : 0
   security_group_id        = aws_security_group.cluster.id
