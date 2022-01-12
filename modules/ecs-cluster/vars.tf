@@ -39,7 +39,7 @@ variable "ECS_DESIRED_CAPACITY" {
 }
 
 variable "ENABLE_SSH" {
-  default = true
+  default = false
 }
 
 variable "SSH_SG" {
