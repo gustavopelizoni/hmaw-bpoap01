@@ -7,7 +7,7 @@ module "hmaw-bpoap01" {
   DEFAULT_TARGET_ARN = module.service-hmaw-bpoap01.target_group_arn
   DOMAIN             = "*.bild.com.br"
   INTERNAL           = false
-  ECS_SG             = "${module.ecs-hmaw-bpoap01.cluster_sg}"
+  ECS_SG             = module.ecs-hmaw-bpoap01.cluster_sg
 }
 
 ## ALB Rule
