@@ -9,17 +9,17 @@ resource "aws_ecr_repository" "bpo-service-hml" {
 #
 # get latest active revision
 #
-data "aws_ecs_task_definition" "ecs-service" {
-  task_definition = aws_ecs_task_definition.ecs-service-taskdef.family
-  depends_on      = [aws_ecs_task_definition.ecs-service-taskdef]
+data "aws_ecs_task_definition" "bpo-service-hml" {
+  task_definition = aws_ecs_task_definition.bpo-service-hml-taskdef.family
+  depends_on      = [aws_ecs_task_definition.bpo-service-hml-taskdef]
 }
 
 #
 # task definition template
 #
 
-data "template_file" "ecs-service" {
-  template = file("${path.module}/ecs-service.json")
+data "template_file" "bpo-service-hml" {
+  template = file("${path.module}/bpo-service-hml.json")
 
   vars = {
     APPLICATION_NAME_BPO_SERVICE    = var.APPLICATION_NAME_BPO_SERVICE
@@ -37,9 +37,9 @@ data "template_file" "ecs-service" {
 # task definition
 #
 
-resource "aws_ecs_task_definition" "ecs-service-taskdef" {
+resource "aws_ecs_task_definition" "bpo-service-hml-taskdef" {
   family                = var.APPLICATION_NAME_BPO_SERVICE
-  container_definitions = data.template_file.ecs-service.rendered
+  container_definitions = data.template_file.bpo-service-hml.rendered
   task_role_arn         = var.TASK_ROLE_ARN
 }
 
@@ -47,12 +47,12 @@ resource "aws_ecs_task_definition" "ecs-service-taskdef" {
 # ecs service
 #
 
-resource "aws_ecs_service" "ecs-service" {
+resource "aws_ecs_service" "bpo-service-hml" {
   name    = var.APPLICATION_NAME_BPO_SERVICE
   cluster = var.CLUSTER_ARN
-  task_definition = "${aws_ecs_task_definition.ecs-service-taskdef.family}:${max(
-    aws_ecs_task_definition.ecs-service-taskdef.revision,
-    data.aws_ecs_task_definition.ecs-service.revision,
+  task_definition = "${aws_ecs_task_definition.bpo-service-hml-taskdef.family}:${max(
+    aws_ecs_task_definition.bpo-service-hml-taskdef.revision,
+    data.aws_ecs_task_definition.bpo-service-hml.revision,
   )}"
   iam_role                           = var.SERVICE_ROLE_ARN
   desired_count                      = var.DESIRED_COUNT
@@ -60,7 +60,7 @@ resource "aws_ecs_service" "ecs-service" {
   deployment_maximum_percent         = var.DEPLOYMENT_MAXIMUM_PERCENT
 
   load_balancer {
-    target_group_arn = aws_alb_target_group.ecs-service.id
+    target_group_arn = aws_alb_target_group.bpo-service-hml.id
     container_name   = var.APPLICATION_NAME_BPO_SERVICE
     container_port   = var.APPLICATION_PORT
   }
