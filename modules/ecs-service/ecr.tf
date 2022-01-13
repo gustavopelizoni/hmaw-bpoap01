@@ -2,10 +2,11 @@
 # ECR 
 #
 
-resource "aws_ecr_repository" "bpo-service-hml" {
+resource "aws_ecr_repository" "hmaw-bpoap01" {
   name = var.APPLICATION_NAME_BPO_SERVICE
 }
 
-resource "aws_ecr_repository" "bpo-beat-celery-hml" {
+resource "aws_ecr_repository" "hmaw-bpoap01-rabbitmq" {
   name = var.APPLICATION_NAME_BPO_BEAT_CELERY
 }
+
