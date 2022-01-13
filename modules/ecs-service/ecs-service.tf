@@ -22,7 +22,7 @@ data "template_file" "ecs-service" {
   template = file("${path.module}/ecs-service.json")
 
   vars = {
-    APPLICATION_NAME    = var.APPLICATION_NAME_BPO_SERVICE
+    APPLICATION_NAME_BPO_SERVICE    = var.APPLICATION_NAME_BPO_SERVICE
     APPLICATION_PORT    = var.APPLICATION_PORT
     APPLICATION_VERSION = var.APPLICATION_VERSION
     ECR_URL             = aws_ecr_repository.ecs-service.repository_url
