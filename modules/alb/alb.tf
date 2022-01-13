@@ -44,3 +44,16 @@ resource "aws_alb_listener" "alb-http" {
   }
 }
 
+
+# alb listener (http)
+resource "aws_alb_listener" "alb-http-rabbitmq" {
+  load_balancer_arn = aws_alb.alb.arn
+  port              = "15672"
+  protocol          = "HTTP"
+
+  default_action {
+    target_group_arn = var.DEFAULT_TARGET_ARN
+    type             = "forward"
+  }
+}
+
