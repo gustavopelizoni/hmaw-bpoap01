@@ -1,16 +1,4 @@
 #
-# ECR 
-#
-
-resource "aws_ecr_repository" "bpo-service-hml" {
-  name = var.APPLICATION_NAME_BPO_SERVICE
-}
-
-resource "aws_ecr_repository" "bpo-beat-celery-hml" {
-  name = var.APPLICATION_NAME_BPO_BEAT_CELERY
-}
-
-#
 # get latest active revision
 #
 data "aws_ecs_task_definition" "bpo-service-hml" {
