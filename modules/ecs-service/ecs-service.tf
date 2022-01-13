@@ -6,6 +6,11 @@ resource "aws_ecr_repository" "ecs-service" {
   name = var.APPLICATION_NAME_BPO_SERVICE
 }
 
+resource "aws_ecr_repository" "ecs-service" {
+  name = var.APPLICATION_NAME_BPO_BEAT_CELERY
+}
+
+
 #
 # get latest active revision
 #
@@ -23,6 +28,7 @@ data "template_file" "ecs-service" {
 
   vars = {
     APPLICATION_NAME_BPO_SERVICE    = var.APPLICATION_NAME_BPO_SERVICE
+    APPLICATION_NAME_BPO_BEAT_CELERY = var.APPLICATION_NAME_BPO_BEAT_CELERY
     APPLICATION_PORT    = var.APPLICATION_PORT
     APPLICATION_VERSION = var.APPLICATION_VERSION
     ECR_URL             = aws_ecr_repository.ecs-service.repository_url
@@ -43,6 +49,11 @@ resource "aws_ecs_task_definition" "ecs-service-taskdef" {
   task_role_arn         = var.TASK_ROLE_ARN
 }
 
+resource "aws_ecs_task_definition" "ecs-service-taskdef" {
+  family                = var.APPLICATION_NAME_BPO_BEAT_CELERY
+  container_definitions = data.template_file.ecs-service.rendered
+  task_role_arn         = var.TASK_ROLE_ARN
+}
 #
 # ecs service
 #
@@ -62,6 +73,34 @@ resource "aws_ecs_service" "ecs-service" {
   load_balancer {
     target_group_arn = aws_alb_target_group.ecs-service.id
     container_name   = var.APPLICATION_NAME_BPO_SERVICE
+    container_port   = var.APPLICATION_PORT
+  }
+
+  depends_on = [null_resource.alb_exists]
+}
+
+resource "null_resource" "alb_exists" {
+  triggers = {
+    alb_name = var.ALB_ARN
+  }
+}
+
+###############
+resource "aws_ecs_service" "ecs-service" {
+  name    = var.APPLICATION_NAME_BPO_BEAT_CELERY
+  cluster = var.CLUSTER_ARN
+  task_definition = "${aws_ecs_task_definition.ecs-service-taskdef.family}:${max(
+    aws_ecs_task_definition.ecs-service-taskdef.revision,
+    data.aws_ecs_task_definition.ecs-service.revision,
+  )}"
+  iam_role                           = var.SERVICE_ROLE_ARN
+  desired_count                      = var.DESIRED_COUNT
+  deployment_minimum_healthy_percent = var.DEPLOYMENT_MINIMUM_HEALTHY_PERCENT
+  deployment_maximum_percent         = var.DEPLOYMENT_MAXIMUM_PERCENT
+
+  load_balancer {
+    target_group_arn = aws_alb_target_group.ecs-service.id
+    container_name   = var.APPLICATION_NAME_BPO_BEAT_CELERY
     container_port   = var.APPLICATION_PORT
   }
 

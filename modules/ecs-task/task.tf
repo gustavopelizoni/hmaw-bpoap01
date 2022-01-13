@@ -6,6 +6,10 @@ resource "aws_ecr_repository" "ecs-task" {
   name = "${var.ECR_PREFIX}${var.APPLICATION_NAME_BPO_SERVICE}"
 }
 
+resource "aws_ecr_repository" "ecs-task" {
+  name = "${var.ECR_PREFIX}${var.APPLICATION_NAME_BPO_BEAT_CELERY}"
+}
+
 #
 # get latest active revision
 #
@@ -22,7 +26,21 @@ data "template_file" "ecs-task" {
   template = file(var.TASK_DEF_TEMPLATE)
 
   vars = {
-    APPLICATION_NAME    = var.APPLICATION_NAME_BPO_SERVICE
+    APPLICATION_NAME_BPO_SERVICE    = var.APPLICATION_NAME_BPO_SERVICE
+    APPLICATION_VERSION = var.APPLICATION_VERSION
+    ECR_URL             = aws_ecr_repository.ecs-task.repository_url
+    AWS_REGION          = var.AWS_REGION
+    CPU_RESERVATION     = var.CPU_RESERVATION
+    MEMORY_RESERVATION  = var.MEMORY_RESERVATION
+    LOG_GROUP           = var.LOG_GROUP
+  }
+}
+################
+data "template_file" "ecs-task" {
+  template = file(var.TASK_DEF_TEMPLATE)
+
+  vars = {
+    APPLICATION_NAME_BPO_BEAT_CELERY  = var.APPLICATION_NAME_BPO_BEAT_CELERY
     APPLICATION_VERSION = var.APPLICATION_VERSION
     ECR_URL             = aws_ecr_repository.ecs-task.repository_url
     AWS_REGION          = var.AWS_REGION
@@ -42,6 +60,12 @@ resource "aws_ecs_task_definition" "ecs-task-taskdef" {
   task_role_arn         = var.TASK_ROLE_ARN
 }
 
+resource "aws_ecs_task_definition" "ecs-task-taskdef" {
+  family                = var.APPLICATION_NAME_BPO_BEAT_CELERY
+  container_definitions = data.template_file.ecs-task.rendered
+  task_role_arn         = var.TASK_ROLE_ARN
+}
+
 # scheduling
 resource "aws_cloudwatch_event_rule" "schedule" {
   name                = "Run${replace(var.APPLICATION_NAME_BPO_SERVICE, "-", "")}"
@@ -49,9 +73,27 @@ resource "aws_cloudwatch_event_rule" "schedule" {
   schedule_expression = var.SCHEDULE
 }
 
+resource "aws_cloudwatch_event_rule" "schedule" {
+  name                = "Run${replace(var.APPLICATION_NAME_BPO_BEAT_CELERY, "-", "")}"
+  description         = "runs ecs task"
+  schedule_expression = var.SCHEDULE
+}
+
 resource "aws_cloudwatch_event_target" "schedule" {
   rule      = aws_cloudwatch_event_rule.schedule.name
   target_id = "Run${replace(var.APPLICATION_NAME_BPO_SERVICE, "-", "")}"
+  arn       = var.CLUSTER_ARN
+  role_arn  = var.EVENTS_ROLE_ARN
+
+  ecs_target {
+    task_count          = 1
+    task_definition_arn = aws_ecs_task_definition.ecs-task-taskdef.arn
+  }
+}
+
+resource "aws_cloudwatch_event_target" "schedule" {
+  rule      = aws_cloudwatch_event_rule.schedule.name
+  target_id = "Run${replace(var.APPLICATION_NAME_BPO_BEAT_CELERY, "-", "")}"
   arn       = var.CLUSTER_ARN
   role_arn  = var.EVENTS_ROLE_ARN
 
