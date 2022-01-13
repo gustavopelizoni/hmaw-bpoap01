@@ -1,10 +1,10 @@
 ## ECS Service
-module "bpo-service" {
+module "hmaw-bpoap01" {
   source = "github.com/gustavopelizoni/hmaw-bpoap01//modules/ecs-service"
   VPC_ID = "vpc-0d51056d1c87cd1c2"
   #APPLICATION_NAME    = "hmaw-bpoap01"
-  APPLICATION_NAME_BPO_SERVICE     = "bpo-service-hml"
-  #APPLICATION_NAME_BPO_BEAT_CELERY = "bpo-beat-celery-hml"
+  APPLICATION_NAME_BPO_SERVICE = "bpo-service-hml"
+  #APPLICATION_NAME_BPO_BEAT_CELERY         = "bpo-beat-celery-hml"
   #APPLICATION_NAME_BPO_WORKER_CELERY_MAIN  = "bpo-worker-celery-main-hml"
   #APPLICATION_NAME_BPO_RABBITMQ            = "bpo-rabbitmq-hml"
   #APPLICATION_NAME_BPO_WORKER_CELERY_POSTS = "bpo-worker-celery-posts-hml"
@@ -20,4 +20,3 @@ module "bpo-service" {
   DESIRED_COUNT       = 2
   ALB_ARN             = module.alb-hmaw-bpoap01.alb_arn
 }
-
