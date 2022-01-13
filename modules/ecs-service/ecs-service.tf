@@ -80,7 +80,7 @@ resource "aws_ecs_service" "ecs-service" {
 }
 
 ###############
-resource "aws_ecs_service" "ecs-service" {
+resource "aws_ecs_service" "ecs-service-beat-celery" {
   name    = var.APPLICATION_NAME_BPO_BEAT_CELERY
   cluster = var.CLUSTER_ARN
   task_definition = "${aws_ecs_task_definition.ecs-service-taskdef.family}:${max(
