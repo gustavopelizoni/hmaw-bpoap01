@@ -5,7 +5,7 @@ module "alb-hmaw-bpoap01" {
   ALB_NAME           = "alb-hmaw-bpoap01"
   VPC_SUBNETS        = "subnet-0751b3e3cc871be8a,subnet-068b41b0ef91dc341"
   DEFAULT_TARGET_ARN = module.hmaw-bpoap01.target_group_arn
-  DOMAIN             = "*.bild.com.br"
+  DOMAIN             = "bild.com.br"
   INTERNAL           = false
   ECS_SG             = module.ecs-hmaw-bpoap01.cluster_sg
 }
