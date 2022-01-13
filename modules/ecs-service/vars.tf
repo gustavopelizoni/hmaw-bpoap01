@@ -7,8 +7,7 @@ variable "AWS_REGION" {
 variable "APPLICATION_NAME_BPO_SERVICE" {
 }
 
-variable "APPLICATION_NAME_BPO_BEAT_CELERY" {
-  default = "hmaw-bpoap01-rabbitmq"
+variable "APPLICATION_NAME_BPO_RABBITMQ" {
 }
 
 variable "APPLICATION_PORT" {
