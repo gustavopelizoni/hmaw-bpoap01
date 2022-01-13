@@ -13,9 +13,9 @@ module "hmaw-bpoap01" {
 ## ALB Rule
 module "hmaw-bpoap01-rule" {
   source           = "github.com/gustavopelizoni/hmaw-bpoap01//modules/alb-rule"
-  LISTENER_ARN     = module.hmaw-bpoap01.http_listener_arn
+  LISTENER_ARN     = module.alb-hmaw-bpoap01.http_listener_arn
   PRIORITY         = 100
-  TARGET_GROUP_ARN = module.hmaw-bpoap01.alb_arn
+  TARGET_GROUP_ARN = module.alb-hmaw-bpoap01.alb_arn
   # CONDITION_FIELD  = "host-header"
   # CONDITION_VALUES = ["bild.com.br"]
 }
