@@ -8,7 +8,7 @@ module "bpo-service-hml" {
   APPLICATION_NAME_BPO_SERVICE = "bpo-service-hml"
   #APPLICATION_NAME_BPO_BEAT_CELERY = "bpo-beat-celery-hml"
   #APPLICATION_NAME_BPO_WORKER_CELERY_MAIN  = "bpo-worker-celery-main-hml"
-  #APPLICATION_NAME_BPO_RABBITMQ            = "bpo-rabbitmq-hml"
+  APPLICATION_NAME_BPO_RABBITMQ            = "bpo-rabbitmq-hml"
   #APPLICATION_NAME_BPO_WORKER_CELERY_POSTS = "bpo-worker-celery-posts-hml"
   APPLICATION_PORT    = "80"
   APPLICATION_VERSION = "latest"
