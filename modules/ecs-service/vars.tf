@@ -7,9 +7,6 @@ variable "AWS_REGION" {
 variable "APPLICATION_NAME_BPO_SERVICE" {
 }
 
-variable "APPLICATION_NAME_BPO_BEAT_CELERY" {
-}
-
 variable "APPLICATION_PORT" {
 }
 
