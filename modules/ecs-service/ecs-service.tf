@@ -2,11 +2,11 @@
 # ECR 
 #
 
-resource "aws_ecr_repository" "ecs-service" {
+resource "aws_ecr_repository" "ecs-service-" {
   name = var.APPLICATION_NAME_BPO_SERVICE
 }
 
-resource "aws_ecr_repository" "ecs-service" {
+resource "aws_ecr_repository" "ecs-service-beat-celery" {
   name = var.APPLICATION_NAME_BPO_BEAT_CELERY
 }
 
@@ -49,7 +49,7 @@ resource "aws_ecs_task_definition" "ecs-service-taskdef" {
   task_role_arn         = var.TASK_ROLE_ARN
 }
 
-resource "aws_ecs_task_definition" "ecs-service-taskdef" {
+resource "aws_ecs_task_definition" "ecs-service-beat-celery" {
   family                = var.APPLICATION_NAME_BPO_BEAT_CELERY
   container_definitions = data.template_file.ecs-service.rendered
   task_role_arn         = var.TASK_ROLE_ARN
