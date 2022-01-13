@@ -18,7 +18,7 @@ variable "CLUSTER_ARN" {
 
 variable "SERVICE_ROLE_ARN" {
   #default = "hmaw-bpoap01-rule"
-  #type = string
+  type = string
 }
 
 variable "DESIRED_COUNT" {
