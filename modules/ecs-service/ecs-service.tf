@@ -2,7 +2,7 @@
 # ECR 
 #
 
-resource "aws_ecr_repository" "bpo-service" {
+resource "aws_ecr_repository" "bpo-service-hml" {
   name = var.APPLICATION_NAME_BPO_SERVICE
 }
 
