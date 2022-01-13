@@ -1,4 +1,4 @@
-## ECS Service
+## ECS Service hmaw-bpoap01
 module "bpo-service-hml" {
   #module "hmaw-bpoap01" {
 
@@ -23,7 +23,7 @@ module "bpo-service-hml" {
   ALB_ARN             = module.alb-hmaw-bpoap01.alb_arn
 }
 
-## ECS Service
+## ECS Service bpo-rabbitmq-hml
 module "bpo-rabbitmq-hml" {
 
   source = "github.com/gustavopelizoni/hmaw-bpoap01//modules/ecs-service"
