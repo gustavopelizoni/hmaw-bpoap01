@@ -21,11 +21,11 @@ resource "aws_alb_listener_rule" "alb_rule" {
 #}
  
   condition {
-    values  = var.CONDITION_FIELD
+    path_pattern  = var.CONDITION_VALUES
   }
 
 condition {
-    values  = var.CONDITION_VALUES
+    host_header  = var.CONDITION_FIELD
   }
 
 }
