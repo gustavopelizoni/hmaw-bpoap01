@@ -13,24 +13,24 @@ resource "aws_alb" "alb" {
 }
 
 # certificate
-#data "aws_acm_certificate" "certificate" {
-#  domain   = var.DOMAIN
-#  statuses = ["ISSUED", "PENDING_VALIDATION"]
-#}
+data "aws_acm_certificate" "certificate" {
+  domain   = var.DOMAIN
+  statuses = ["ISSUED", "PENDING_VALIDATION"]
+}
 
 # alb listener (https)
-#resource "aws_alb_listener" "alb-https" {
-#  load_balancer_arn = aws_alb.alb.arn
-#  port              = "443"
-#  protocol          = "HTTPS"
-#  ssl_policy        = "ELBSecurityPolicy-2016-08"
-#  certificate_arn   = data.aws_acm_certificate.certificate.arn
+resource "aws_alb_listener" "alb-https" {
+  load_balancer_arn = aws_alb.alb.arn
+  port              = "443"
+  protocol          = "HTTPS"
+  ssl_policy        = "ELBSecurityPolicy-2016-08"
+  certificate_arn   = data.aws_acm_certificate.certificate.arn
 
-#  default_action {
-#    target_group_arn = var.DEFAULT_TARGET_ARN
-#    type             = "forward"
-#  }
-#}
+  default_action {
+    target_group_arn = var.DEFAULT_TARGET_ARN
+    type             = "forward"
+  }
+}
 
 # alb listener (http)
 resource "aws_alb_listener" "alb-http" {
