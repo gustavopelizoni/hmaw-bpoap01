@@ -32,8 +32,8 @@ resource "aws_alb_target_group" "ecs-service" {
 #
 # target group
 #
-resource "aws_alb_target_group" "ecs-service-beat-celery" {
-  name = "${var.APPLICATION_NAME_BPO_BEAT_CELERY}-${substr(
+resource "aws_alb_target_group" "ecs-service" {
+  name = "${var.APPLICATION_NAME_BPO_SERVICE}-${substr(
     md5(
       format(
         "%s%s%s",
