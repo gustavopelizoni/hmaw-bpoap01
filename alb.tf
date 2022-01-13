@@ -16,6 +16,6 @@ module "alb-hmaw-bpoap01-rule" {
   LISTENER_ARN     = module.alb-hmaw-bpoap01.http_listener_arn
   PRIORITY         = 100
   TARGET_GROUP_ARN = module.hmaw-bpoap01.target_group_arn
-  # CONDITION_FIELD  = "host-header"
-  # CONDITION_VALUES = ["bild.com.br"]
+  CONDITION_FIELD  = "host-header"
+  CONDITION_VALUES = ["bild.com.br"]
 }
