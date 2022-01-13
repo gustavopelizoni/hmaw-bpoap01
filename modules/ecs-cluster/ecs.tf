@@ -67,6 +67,7 @@ resource "aws_autoscaling_group" "cluster" {
   tag {
     key                 = "Name"
     value               = "${var.CLUSTER_NAME}-ecs"
+    NameArea            = "Inovacao"
     propagate_at_launch = true
   }
 }
