@@ -22,7 +22,7 @@ module "service-hmaw-bpoap01" {
   APPLICATION_PORT    = "80"
   APPLICATION_VERSION = "latest"
   CLUSTER_ARN         = module.ecs-hmaw-bpoap01.cluster_arn
-  #SERVICE_ROLE_ARN    = module.hmaw-bpoap01-rule
+  SERVICE_ROLE_ARN    = module.hmaw-bpoap01-rule
   AWS_REGION          = "us-east-1"
   HEALTHCHECK_MATCHER = "200-399"
   CPU_RESERVATION     = "512"
