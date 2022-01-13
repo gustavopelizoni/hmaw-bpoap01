@@ -3,13 +3,13 @@
 #
 
 resource "aws_ecr_repository" "hmaw-bpoap01" {
-  name = var.APPLICATION_NAME_ECR
+  name = var.APPLICATION_NAME
 }
 
 #resource "aws_ecr_repository" "hmaw-bpoap01-rabbitmq" {
 #  name = var.APPLICATION_NAME_BPO_BEAT_CELERY
 #}
-#
+
 # get latest active revision
 #
 data "aws_ecs_task_definition" "bpo-service-hml" {
