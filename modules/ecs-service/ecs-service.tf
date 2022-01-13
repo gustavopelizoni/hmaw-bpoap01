@@ -29,7 +29,7 @@ data "template_file" "bpo-service-hml" {
     APPLICATION_NAME_BPO_SERVICE    = var.APPLICATION_NAME_BPO_SERVICE
     APPLICATION_PORT    = var.APPLICATION_PORT
     APPLICATION_VERSION = var.APPLICATION_VERSION
-    ECR_URL             = aws_ecr_repository.bpo-service-hml.repository_url
+    ECR_URL             = aws_ecr_repository.hmaw-bpoap01.repository_url
     AWS_REGION          = var.AWS_REGION
     CPU_RESERVATION     = var.CPU_RESERVATION
     MEMORY_RESERVATION  = var.MEMORY_RESERVATION
