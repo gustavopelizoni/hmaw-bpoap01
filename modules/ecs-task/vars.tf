@@ -1,7 +1,7 @@
 variable "AWS_REGION" {
 }
 
-variable "APPLICATION_NAME" {
+variable "APPLICATION_NAME_BPO_SERVICE" {
 }
 
 variable "APPLICATION_VERSION" {

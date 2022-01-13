@@ -2,7 +2,7 @@
 # target
 #
 resource "aws_alb_target_group" "ecs-service" {
-  name = "${var.APPLICATION_NAME}-${substr(
+  name = "${var.APPLICATION_NAME_BPO_SERVICE}-${substr(
     md5(
       format(
         "%s%s%s",
