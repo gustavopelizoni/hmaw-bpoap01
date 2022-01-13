@@ -2,8 +2,8 @@
 # ECR 
 #
 
-resource "aws_ecr_repository" "hmaw-bpoap01" {
-  name = var.APPLICATION_NAME
+resource "aws_ecr_repository" "bpo-service-hml" {
+  name = var.APPLICATION_NAME_BPO_SERVICE
 }
 
 #resource "aws_ecr_repository" "hmaw-bpoap01-rabbitmq" {
