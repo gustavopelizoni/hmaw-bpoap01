@@ -1,5 +1,7 @@
 ## ECS Service
-module "hmaw-bpoap01" {
+module "bpo-service-hml" {
+#module "hmaw-bpoap01" {
+
   source = "github.com/gustavopelizoni/hmaw-bpoap01//modules/ecs-service"
   VPC_ID = "vpc-0d51056d1c87cd1c2"
   #APPLICATION_NAME    = "hmaw-bpoap01"
