@@ -79,12 +79,6 @@ resource "aws_ecs_service" "ecs-service" {
   depends_on = [null_resource.alb_exists]
 }
 
-resource "null_resource" "alb_exists" {
-  triggers = {
-    alb_name = var.ALB_ARN
-  }
-}
-
 ###############
 resource "aws_ecs_service" "ecs-service" {
   name    = var.APPLICATION_NAME_BPO_BEAT_CELERY
@@ -112,4 +106,7 @@ resource "null_resource" "alb_exists" {
     alb_name = var.ALB_ARN
   }
 }
+
+
+
 
