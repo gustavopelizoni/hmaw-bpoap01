@@ -23,8 +23,9 @@ resource "aws_alb_listener_rule" "alb_rule" {
   condition {
     field  = var.CONDITION_FIELD
   }
-}
 
 condition {
     field  = var.CONDITION_VALUES
   }
+
+}
