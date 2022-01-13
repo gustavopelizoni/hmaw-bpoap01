@@ -7,25 +7,22 @@ resource "aws_alb_listener_rule" "alb_rule" {
     target_group_arn = var.TARGET_GROUP_ARN
   }
 
- #condition {
- #   path_pattern {
- #     values = ["/static/*"]
- #   }
- # }
+ condition {
+    path_pattern {
+      values = var.CONDITION_VALUES
+    }
+  }
 
- # condition {
- #   host_header {
- #     values = ["bild.com.br"]
- #   }
- # }
-#}
- 
   condition {
-    path_pattern  = var.CONDITION_VALUES
-  }
-
-condition {
-    host_header  = var.CONDITION_FIELD
-  }
-
+    host_header {
+      values = var.CONDITION_FIELD
+    }
+ }
 }
+ 
+#  condition {
+#    field  = var.CONDITION_FIELD
+#    values = var.CONDITION_VALUES
+#  }
+#}
+
