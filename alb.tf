@@ -21,11 +21,11 @@ module "alb-hmaw-bpoap01-rule" {
 }
 
 ## ALB Rule
-module "bpo-rabbitmq-hml" {
+module "alb-bpo-rabbitmq-hml" {
   source           = "github.com/gustavopelizoni/hmaw-bpoap01//modules/alb-rule"
   LISTENER_ARN     = module.alb-hmaw-bpoap01.http_listener_arn
   PRIORITY         = 100
-  TARGET_GROUP_ARN = module.bpo-rabbitmq-hml.target_group_arn
+  TARGET_GROUP_ARN = module.alb-bpo-rabbitmq-hml.target_group_arn
   #CONDITION_FIELD  = "host-header"
   #CONDITION_VALUES = ["bild.com.br"]
 }
