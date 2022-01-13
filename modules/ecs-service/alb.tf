@@ -1,7 +1,7 @@
 #
 # target group
 #
-resource "aws_alb_target_group" "ecs-service" {
+resource "aws_alb_target_group" "bpo-service-hml" {
   name = "${var.APPLICATION_NAME_BPO_SERVICE}-${substr(
     md5(
       format(
