@@ -9,13 +9,13 @@ resource "aws_alb_listener_rule" "alb_rule" {
 
  condition {
     path_pattern {
-      values = var.CONDITION_VALUES
+      values = ["/"]
     }
   }
 
   condition {
     host_header {
-      values = var.CONDITION_FIELD
+      values = ["bpo.bild.com.br"]
     }
  }
 }
