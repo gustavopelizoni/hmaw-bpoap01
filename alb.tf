@@ -2,7 +2,7 @@
 module "hmaw-bpoap01" {
   source             = "github.com/gustavopelizoni/hmaw-bpoap01//modules/alb"
   VPC_ID             = "vpc-0d51056d1c87cd1c2"
-  ALB_NAME           = "albhmawbpoap01"
+  ALB_NAME           = "alb-hmaw-bpoap01"
   VPC_SUBNETS        = "subnet-0751b3e3cc871be8a,subnet-068b41b0ef91dc341"
   DEFAULT_TARGET_ARN = module.service-hmaw-bpoap01.target_group_arn
   DOMAIN             = "*.bild.com.br"
