@@ -6,6 +6,7 @@ module "bpo-service-hml" {
   VPC_ID = "vpc-0d51056d1c87cd1c2"
   #APPLICATION_NAME    = "hmaw-bpoap01"
   APPLICATION_NAME_BPO_SERVICE     = "bpo-service-hml"
+  APPLICATION_NAME_ECR     = "hmaw-bpoap01"
   APPLICATION_NAME_BPO_BEAT_CELERY = "bpo-beat-celery-hml"
   #APPLICATION_NAME_BPO_WORKER_CELERY_MAIN  = "bpo-worker-celery-main-hml"
   #APPLICATION_NAME_BPO_RABBITMQ            = "bpo-rabbitmq-hml"

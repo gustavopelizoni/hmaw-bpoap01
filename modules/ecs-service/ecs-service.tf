@@ -3,7 +3,7 @@
 #
 
 resource "aws_ecr_repository" "hmaw-bpoap01" {
-  name = var.APPLICATION_NAME_BPO_SERVICE
+  name = var.APPLICATION_NAME_ECR
 }
 
 #resource "aws_ecr_repository" "hmaw-bpoap01-rabbitmq" {
