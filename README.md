@@ -8,7 +8,7 @@ module "my-ecs" {
   source         = "github.com/gustavopelizoni/hmaw-bpoap01//modules/ecs-cluster"
   VPC_ID         = "vpc-id"
   CLUSTER_NAME   = "my-ecs"
-  INSTANCE_TYPE  = "t2.small"
+  INSTANCE_TYPE  = "t3a.small"
   SSH_KEY_NAME   = "mykeypairName"
   VPC_SUBNETS    = "subnetId-1,subnetId-2"
   ENABLE_SSH     = true
